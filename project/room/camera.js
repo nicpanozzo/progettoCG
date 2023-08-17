@@ -198,6 +198,6 @@ function makeKeyCanvas() {
 
 RoomBoundaries = {
     width: 4.8,
-    length: 8.7,
+    length: 8.5,
     height: 8.3
 }

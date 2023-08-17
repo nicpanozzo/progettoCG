@@ -13,11 +13,17 @@ gl.enable(gl.DEPTH_TEST);
 
 let program = webglUtils.createProgramInfo(gl, ["base-vertex-shader", "base-fragment-shader"]);
 
+let poschess = [1,1,2.5];
+
 
 //light used for the room
 let light = {
+    posLightOff : [16,5,6],
+    dirLightOff : [1,0,2],
+    posLightOn : [0,8,0],
+    dirLightOn : [0.4,0.9,.1],
     position: [0,8.8,0],
-    direction : [-1,1,0],
+    direction : [-1,1,0],//[4,1,0.2],
     color : [1.0, 1.0, 1.0],
 };
 
@@ -30,9 +36,18 @@ bed.mtl = "./obj/bed/bed.mtl"
 bed.position = [0, 0, 1]
 
 let room = []
-room.path = "./obj/room/room.obj"
-room.mtl = "./obj/room/room.mtl"
+// room.path = "./obj/room/room.obj"
+// room.mtl = "./obj/room/room.mtl"
+// room.position = [0, 0, 0]
+room.path = "./obj/myroom/myroom.obj"
+room.mtl = "./obj/myroom/myroom.mtl"
 room.position = [0, 0, 0]
+
+let chessset = []
+chessset.path = "./obj/chessset/chessset.obj"
+chessset.mtl = "./obj/chessset/chessset.mtl"
+chessset.position = poschess //[0, 0, 1]
+    
 
 let brain = []
 brain.path = "./obj/brain/brain.obj"
@@ -65,13 +80,14 @@ portaOggetti.path = "./obj/portaOggetti/portaOggetti.obj"
 portaOggetti.mtl = "./obj/portaOggetti/portaOggetti.mtl"
 portaOggetti.position = [0, 0, 0]
 
-obj_list.push(bed);
+// obj_list.push(bed);
 obj_list.push(room);
+obj_list.push(chessset);
 obj_list.push(brain);
 obj_list.push(orologio);
 obj_list.push(lampadario);
 obj_list.push(calendario);
-obj_list.push(cestino);
+// obj_list.push(cestino);
 obj_list.push(portaOggetti);
 
 let scene = new Room(obj_list);
@@ -113,14 +129,18 @@ canvas.onmouseup=mouseUp;
 canvas.mouseout=mouseUp;
 canvas.onmousemove=mouseMove;
 
- //create check function 
- function check() {
-    document.getElementById('shadows');
-    scene.shadows.enable = !scene.shadows.enable;
-  }
 
-// add event to checkbox #shadow
-document.getElementById('shadows').addEventListener('change', check);
+// check changes on radio buttons
+$('input[type=radio][name=shadows]').change(function() {
+    scene.shadows.enable = this.value;
+    console.log(scene.shadows.enable);
+    // if (this.value == 'allot') {
+    //     // ...
+    // }
+    // else if (this.value == 'transfer') {
+    //     // ...
+    // }
+});
 
 // Canvas 2d context
 let cameraCanvas = document.getElementById('canvas2d');

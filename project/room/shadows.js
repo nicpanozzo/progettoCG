@@ -38,13 +38,13 @@ function Shadows(){
 
     // Shadow settings
     
-    shadow.enable = false;
+    shadow.enable = "none";
     shadow.fov = 90;
     shadow.projWidth = 3;
     shadow.projHeight = 1;
     shadow.zFarProj = 25;
     shadow.bias = -0.0001;
-    shadow.showFrustum = false;
+    shadow.showFrustum = true;
 
     return shadow;
 }

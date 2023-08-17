@@ -10,10 +10,10 @@ function render() {
 
     let proj = scene.projectionMatrix()
 
-    if(scene.shadows.enable){
+    if(scene.shadows.enable == 'on'){
         const lightWorldMatrix = m4.lookAt(
-            light.position,       // position
-            light.direction.map(l =>  -l),      // target
+            light.posLightOn,       // position
+            light.dirLightOn.map(l =>  -l),      // target
             [0, 1, 0],              // up
         );
 
@@ -69,7 +69,67 @@ function render() {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
 
-    }else{
+    } if(scene.shadows.enable == 'off'){
+        const lightWorldMatrix = m4.lookAt(
+            light.posLightOff,       // position
+            light.dirLightOff.map(l =>  -l),      // target
+            [0, 1, 0],              // up
+        );
+
+        const lightProjectionMatrix = m4.perspective(
+            degToRad(scene.shadows.fov),
+            scene.shadows.projWidth / scene.shadows.projHeight,
+            0.5,                        // near
+            scene.shadows.zFarProj);     // far
+
+        let sharedUniforms = {
+            u_view: m4.inverse(lightWorldMatrix),                  // View Matrix
+            u_projection: lightProjectionMatrix,                   // Projection Matrix
+            u_bias: scene.shadows.bias,
+            u_textureMatrix: m4.identity(),
+            u_projectedTexture: scene.shadows.depthTexture,
+            u_reverseLightDirection: lightWorldMatrix.slice(8, 11),
+        };
+
+        // draw to the depth texture
+        gl.bindFramebuffer(gl.FRAMEBUFFER, scene.shadows.depthFramebuffer);
+        gl.viewport(0, 0, scene.shadows.depthTextureSize, scene.shadows.depthTextureSize);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        scene.mesh_list.forEach(m => {
+            m.render(gl, scene.shadows.colorProgramInfo, sharedUniforms);
+        });
+         // draw room to the canvas projecting the depth texture into the room
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+        gl.clearColor(.7, .7, .7, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        let textureMatrix = m4.identity();
+        textureMatrix = m4.translate(textureMatrix, 0.5, 0.5, 0.5);
+        textureMatrix = m4.scale(textureMatrix, 0.5, 0.5, 0.5);
+        textureMatrix = m4.multiply(textureMatrix, lightProjectionMatrix);
+        textureMatrix = m4.multiply(textureMatrix, m4.inverse(lightWorldMatrix));
+
+
+        sharedUniforms = {
+            u_view: scene.camera.getViewMatrix(),
+            u_projection: proj,
+            u_bias: scene.shadows.bias,
+            u_textureMatrix: textureMatrix,
+            u_projectedTexture: scene.shadows.depthTexture,
+            u_reverseLightDirection: lightWorldMatrix.slice(8, 11),
+            u_worldCameraPosition: scene.camera.getPosition(),
+            u_lightPosition: light.position,
+            u_lightColor: light.color,
+        };
+
+        scene.mesh_list.forEach(m => {
+            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
+        });
+
+    }
+    if (scene.shadows.enable == 'none') {
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clearColor(.7, .7, .7, 1);

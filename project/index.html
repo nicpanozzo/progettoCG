@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-	<title>WebGL UniBO - Isabella Marasco</title>
+	<title>Computer Graphics - Nicola Panozzo</title>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- CSS-->
@@ -224,6 +224,27 @@
 			gl_FragColor = u_color;
 		}
 	</script>
+
+	<!-- <script  id="pick-vertex-shader" type="x-shader/x-vertex">
+		attribute vec4 a_position;
+		
+		uniform mat4 u_matrix;
+		
+		void main() {
+		  // Multiply the position by the matrix.
+		  gl_Position = u_matrix * a_position;
+		}
+	  </script>
+	  <!-- fragment shader -->
+	  <script  id="pick-fragment-shader" type="x-shader/x-fragment">
+		precision mediump float;
+		
+		uniform vec4 u_id;
+		
+		void main() {
+		   gl_FragColor = u_id;
+		}
+	  </script> -->
 	
 	
 </head>
@@ -250,8 +271,16 @@
 					<b>Freccia destra/sinistra:</b> rotazione</br>
 					<b>R:</b> riallineare la camera</br>
 					<p>
-						<input type="checkbox" id="shadows" name="shadows" value="shadows" unchecked>
-						<label id="shadows"> <b>Ombre</b></label><br>
+						<!-- radio input with 3 choices -->
+						<input type="radio" id="shadows" name="shadows" value="none" checked>
+						<label id="shadows"> <b>None</b></label><br>
+						<input type="radio" id="camera2" name="shadows" value="on">
+						<label id="shadows2"> <b>On</b></label><br>
+						<input type="radio" id="camera3" name="shadows" value="off">
+						<label id="shadows3"> <b>Off</b></label><br>
+
+						<!-- <input type="checkbox" id="shadows" name="shadows" value="shadows" unchecked>
+						<label id="shadows"> <b>Ombre</b></label><br> -->
 						
 					</p>
 					<div style=" background-color: rgb(38, 38, 38); border-radius: 5px;">
@@ -264,7 +293,9 @@
 
 				
 				
-				<p style="text-align: right;position:absolute; bottom: 15px; right: 10px;line-height: 0%; margin: 0;">Realizzato da Nicola Panozzo</p>
+				<p style="text-align: right;position:absolute; bottom: 15px; right: 10px;line-height: 0%; margin: 0;">
+					<a href="../doc/report.html">Report</a>
+					di Nicola Panozzo</p>
 
 		</div>
 		

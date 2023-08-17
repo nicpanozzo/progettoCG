@@ -55,11 +55,6 @@ class Room {
             this.camera.reset()
         }
     }
-
-    toggle_shadows(){
-        this.shadow.enable = !this.shadow.enable;
-    }
-
 }
 
 

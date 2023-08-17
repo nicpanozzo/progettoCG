@@ -5,6 +5,8 @@ body{
     margin-right: 220px;
     margin-left: 220px;
     font-size: 17px;
+    color: white;
+    background-color: rgb(38, 38, 38);
 }
 
 .title{
@@ -31,7 +33,7 @@ body{
 }
 
 hr.solid {
-    border-top: 3px solid #21e6e3;
+    border-top: 3px solid rgba(119, 150, 86, 0.962);
   }
 
 .img{
@@ -39,4 +41,8 @@ hr.solid {
     margin-right: auto;
     display: block;
     text-align: center;
+}
+
+a {
+    color: rgba(119, 150, 86, 0.962);
 }
