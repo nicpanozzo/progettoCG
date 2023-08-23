@@ -1,20 +1,50 @@
 # Blender 3.6.0 MTL File: 'myroom.blend'
 # www.blender.org
 
-newmtl AcademyYearbook-220
+newmtl HdrSkySunset007_JPG_2K
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 illum 2
-map_Kd /Users/nicolapanozzo/Desktop/AcademyYearbook-220.jpg
-map_d /Users/nicolapanozzo/Desktop/AcademyYearbook-220.jpg
+map_Kd HdrSkySunset007_JPG_2K.jpg
+map_d HdrSkySunset007_JPG_2K.jpg
+
+newmtl Material
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd floor.jpg
 
 newmtl battiscopa
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.117090 0.079130 0.062506
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl grass
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd bigrass.jpg
+map_d bigrass.jpg
+
+newmtl lampadina
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.762707 0.800000 0.400792
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
@@ -39,7 +69,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd /Users/nicolapanozzo/Downloads/Door-6950.jpg
+map_Kd door.jpg
 
 newmtl stipiti
 Ns 250.000000

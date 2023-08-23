@@ -65,9 +65,15 @@ function render() {
             u_lightColor: light.color,
         };
 
-        scene.mesh_list.forEach(m => {
+        mesh_list_without_lamp = scene.mesh_list.filter(m => m.obj.path != "./obj/calendario/calendario.obj")
+
+        mesh_list_without_lamp.forEach(m => {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
+        scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
 
     } if(scene.shadows.enable == 'off'){
         const lightWorldMatrix = m4.lookAt(
@@ -127,6 +133,10 @@ function render() {
         scene.mesh_list.forEach(m => {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
+        scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
 
     }
     if (scene.shadows.enable == 'none') {
@@ -149,6 +159,31 @@ function render() {
         scene.mesh_list.forEach(m => {
             m.render(gl, program, sharedUniforms);
         });
+        scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
     }
+
+    // gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    //     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    //     gl.clearColor(.7, .7, .7, 1);
+    //     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+    //     const sharedUniforms = {
+    //         u_ambientLight: [0.1, 0.1, 0.1],                          // Ambient
+    //         u_lightDirection: m4.normalize(light.direction),          // Light Direction
+    //         u_lightColor: light.color,                                // Light Color
+    //         u_view: scene.camera.getViewMatrix(),                     // View Matrix
+    //         u_projection: scene.projectionMatrix(),                   // Projection Matrix
+    //         u_viewWorldPosition: scene.camera.getPosition(),          // Camera position
+    //         u_lightPosition: (light.position),
+    //         u_lightDirection: (light.direction),
+    //     };
+
+    //     scene.always_on_mesh.forEach(m => {
+    //         m.render(gl, program, sharedUniforms);
+    //     });
+
     requestAnimationFrame(render);
 }

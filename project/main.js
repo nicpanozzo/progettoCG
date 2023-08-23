@@ -29,6 +29,7 @@ let light = {
 
 //insert object
 let obj_list = [];
+let always_on_obj = [];
 
 let bed = []
 bed.path = "./obj/bed/bed.obj"
@@ -47,6 +48,11 @@ let chessset = []
 chessset.path = "./obj/chessset/chessset.obj"
 chessset.mtl = "./obj/chessset/chessset.mtl"
 chessset.position = poschess //[0, 0, 1]
+
+let woodentable = []
+woodentable.path = "./obj/woodentable/woodentable.obj"
+woodentable.mtl = "./obj/woodentable/woodentable.mtl"
+woodentable.position = [1,1,0] //[0, 0, 1]
     
 
 let brain = []
@@ -60,10 +66,16 @@ orologio.path = "./obj/orologio/orologio.obj"
 orologio.mtl = "./obj/orologio/orologio.mtl"
 orologio.position = [0, 0, 0]
 
-let lampadario = []
-lampadario.path = "./obj/lampadario/lampadario.obj"
-lampadario.mtl = "./obj/lampadario/lampadario.mtl"
-lampadario.position = [0, 0, 0]
+let lamp = []
+lamp.path = "./obj/lamp/lamp.obj"
+lamp.mtl = "./obj/lamp/lamp.mtl"
+lamp.position = [1, 0, 0]
+
+
+// let lampadario = []
+// lampadario.path = "./obj/lampadario/lampadario.obj"
+// lampadario.mtl = "./obj/lampadario/lampadario.mtl"
+// lampadario.position = [0, 0, 0]
 
 let calendario = []
 calendario.path = "./obj/calendario/calendario.obj"
@@ -82,15 +94,19 @@ portaOggetti.position = [0, 0, 0]
 
 // obj_list.push(bed);
 obj_list.push(room);
-obj_list.push(chessset);
-obj_list.push(brain);
-obj_list.push(orologio);
-obj_list.push(lampadario);
-obj_list.push(calendario);
+// obj_list.push(chessset);
+obj_list.push(woodentable);
+// obj_list.push(brain);
+// obj_list.push(orologio);
+// obj_list.push(lampadario);
+// obj_list.push(calendario);
+// obj_list.push(lamp);
 // obj_list.push(cestino);
 obj_list.push(portaOggetti);
 
-let scene = new Room(obj_list);
+always_on_obj.push(calendario);
+
+let scene = new Room(obj_list,always_on_obj);
 window.addEventListener('keydown', (e) => {scene.keys[e.key] = true;});
 window.addEventListener('keyup', (e) => {scene.keys[e.key] = false;});
 

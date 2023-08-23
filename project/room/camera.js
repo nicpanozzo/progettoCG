@@ -89,7 +89,7 @@ class Camera {
         // this.position[0] += (this.forward[0] * d) * ((this.position[0] + (this.forward[0] * d)) < RoomBoundaries.width );
         // this.position[1] += (this.forward[1] * d) * ((this.position[1] + (this.forward[1] * d)) < RoomBoundaries.length );
         // this.position[2] += (this.forward[2] * d) * ((this.position[2] + (this.forward[2] * d)) < RoomBoundaries.height );
-        console.log(this.position);
+        // console.log(this.position);
     }
 
     reset(){

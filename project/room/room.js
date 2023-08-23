@@ -1,9 +1,13 @@
 class Room {
-    constructor(obj_list){
+    constructor(obj_list,always_on_obj){
         this.mesh_list = []; // Array used to store all the mesh used in the room
+        this.always_on_mesh = []; // Array used to store all the mesh used in the room
 
         obj_list.forEach(obj => {
             this.mesh_list.push(new Mesh(obj, gl));
+        });
+        always_on_obj.forEach(obj => {
+            this.always_on_mesh.push(new Mesh(obj, gl));
         });
 
         this.shadows = Shadows()
