@@ -72,10 +72,10 @@ lamp.mtl = "./obj/lamp/lamp.mtl"
 lamp.position = [1, 0, 0]
 
 
-// let lampadario = []
-// lampadario.path = "./obj/lampadario/lampadario.obj"
-// lampadario.mtl = "./obj/lampadario/lampadario.mtl"
-// lampadario.position = [0, 0, 0]
+let lampada = []
+lampada.path = "./obj/lampada/lampada.obj"
+lampada.mtl = "./obj/lampada/lampada.mtl"
+lampada.position = [0, 0, 0]
 
 let calendario = []
 calendario.path = "./obj/calendario/calendario.obj"
@@ -92,6 +92,11 @@ portaOggetti.path = "./obj/portaOggetti/portaOggetti.obj"
 portaOggetti.mtl = "./obj/portaOggetti/portaOggetti.mtl"
 portaOggetti.position = [0, 0, 0]
 
+let esterni = []
+esterni.path = "./obj/esterni/esterni.obj"
+esterni.mtl = "./obj/esterni/esterni.mtl"
+esterni.position = [0, 0, 0]
+
 // obj_list.push(bed);
 obj_list.push(room);
 // obj_list.push(chessset);
@@ -104,7 +109,8 @@ obj_list.push(woodentable);
 // obj_list.push(cestino);
 obj_list.push(portaOggetti);
 
-always_on_obj.push(calendario);
+always_on_obj.push(lampada);
+always_on_obj.push(esterni);
 
 let scene = new Room(obj_list,always_on_obj);
 window.addEventListener('keydown', (e) => {scene.keys[e.key] = true;});

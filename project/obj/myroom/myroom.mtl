@@ -1,16 +1,6 @@
 # Blender 3.6.0 MTL File: 'myroom.blend'
 # www.blender.org
 
-newmtl HdrSkySunset007_JPG_2K
-Ns 250.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-illum 2
-map_Kd HdrSkySunset007_JPG_2K.jpg
-map_d HdrSkySunset007_JPG_2K.jpg
-
 newmtl Material
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
@@ -21,6 +11,26 @@ d 1.000000
 illum 2
 map_Kd floor.jpg
 
+newmtl Material.001
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.037039 0.069129 0.144844
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.002
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd WhiteStuccoWall01_4K_Roughness.png
+
 newmtl battiscopa
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
@@ -30,16 +40,6 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-
-newmtl grass
-Ns 250.000000
-Ka 1.000000 1.000000 1.000000
-Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
-Ni 1.450000
-illum 2
-map_Kd bigrass.jpg
-map_d bigrass.jpg
 
 newmtl lampadina
 Ns 250.000000
@@ -54,12 +54,12 @@ illum 2
 newmtl muro
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.363026 0.363026 0.363026
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
+map_Kd WhiteStuccoWall01_4K_Roughness.png
 
 newmtl porta
 Ns 250.000000
