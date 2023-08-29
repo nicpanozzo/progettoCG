@@ -40,6 +40,7 @@ function render() {
         scene.mesh_list.forEach(m => {
             m.render(gl, scene.shadows.colorProgramInfo, sharedUniforms);
         });
+        
          // draw room to the canvas projecting the depth texture into the room
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -65,9 +66,11 @@ function render() {
             u_lightColor: light.color,
         };
 
-        mesh_list_without_lamp = scene.mesh_list.filter(m => m.obj.path != "./obj/calendario/calendario.obj")
 
-        mesh_list_without_lamp.forEach(m => {
+        scene.mesh_list.forEach(m => {
+            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
+        });
+        scene.outside_obj.forEach(m => {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
         scene.always_on_mesh.forEach(m => {
@@ -137,12 +140,17 @@ function render() {
             m.render(gl, program, sharedUniforms);
         }
         );
+        scene.outside_obj.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
 
     }
     if (scene.shadows.enable == 'none') {
+        programP = program;
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-        gl.clearColor(.7, .7, .7, 1);
+        gl.clearColor(.7, .7, .7, 0.1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         const sharedUniforms = {
@@ -160,6 +168,10 @@ function render() {
             m.render(gl, program, sharedUniforms);
         });
         scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
+        scene.outside_obj.forEach(m => {
             m.render(gl, program, sharedUniforms);
         }
         );

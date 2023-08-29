@@ -10,6 +10,11 @@ class Mesh {
             this.angle = 0;
         }
 
+        if (obj.vrotate != undefined){ // Used for world matrix transform
+            this.vrotate = obj.vrotate;
+            this.angle = 0;
+        }
+
         this.ready = false;
 
         LoadMesh(gl, this.obj).then(() => {
@@ -74,6 +79,17 @@ class Mesh {
         if (this.rotate === true && uniforms.u_textureMatrix !== m4.identity() ){
             u_world = m4.yRotate(u_world, degToRad(this.angle));
             this.angle = this.angle === 360? 0 : this.angle+5;
+        }
+
+        // rotate on the x axis
+        if (this.vrotate != undefined && uniforms.u_textureMatrix !== m4.identity() ){
+            // recenter the object on the origin
+            
+            u_world = m4.translate(u_world, 0.3385, 2.37, 0.815);
+            u_world = m4.xRotate(u_world, degToRad(this.angle));
+            // u_world = m4.translate(u_world, 0, 1, 0);
+            
+            this.angle = this.angle === 360? 0 : this.angle + this.vrotate;
         }
 
         for (const {bufferInfo, material} of this.obj.parts) {

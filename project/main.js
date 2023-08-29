@@ -9,7 +9,7 @@ if (!gl) {
 if (!gl.getExtension('WEBGL_depth_texture')) {
     throw new Error('need WEBGL_depth_texture');
 }
-gl.enable(gl.DEPTH_TEST);
+// gl.enable(gl.DEPTH_TEST);
 
 let program = webglUtils.createProgramInfo(gl, ["base-vertex-shader", "base-fragment-shader"]);
 
@@ -30,11 +30,17 @@ let light = {
 //insert object
 let obj_list = [];
 let always_on_obj = [];
+let outside_obj = [];
 
 let bed = []
 bed.path = "./obj/bed/bed.obj"
 bed.mtl = "./obj/bed/bed.mtl"
 bed.position = [0, 0, 1]
+
+let glass = []
+glass.path = "./obj/glass/glass.obj"
+glass.mtl = "./obj/glass/glass.mtl"
+glass.position = [0, 0, 0]
 
 let room = []
 // room.path = "./obj/room/room.obj"
@@ -53,18 +59,37 @@ let woodentable = []
 woodentable.path = "./obj/woodentable/woodentable.obj"
 woodentable.mtl = "./obj/woodentable/woodentable.mtl"
 woodentable.position = [1,1,0] //[0, 0, 1]
+// woodentable.rotate = true;  
     
 
 let brain = []
 brain.path = "./obj/brain/brain.obj"
 brain.mtl = "./obj/brain/brain.mtl"
 brain.position = [0, 0, 4]
-brain.rotate = true;
+brain.vrotate = true;
+
+let lancettedx = []
+lancettedx.path = "./obj/lancettedx/lancettedx.obj"
+lancettedx.mtl = "./obj/lancettedx/lancettedx.mtl"
+lancettedx.position = [0, 0, 0]
+lancettedx.vrotate = -0.042;
+
+let lancettadxL = []
+lancettadxL.path = "./obj/lancettadxL/lancettadxL.obj"
+lancettadxL.mtl = "./obj/lancettadxL/lancettadxL.mtl"
+lancettadxL.position = [0, 0, 0]
+lancettadxL.vrotate = -0.5;
 
 let orologio = []
 orologio.path = "./obj/orologio/orologio.obj"
 orologio.mtl = "./obj/orologio/orologio.mtl"
 orologio.position = [0, 0, 0]
+// orologio.rotate = true;
+
+let chessclock = []
+chessclock.path = "./obj/chessclock/chessclock.obj"
+chessclock.mtl = "./obj/chessclock/chessclock.mtl"
+chessclock.position = [0, 0, 0]
 
 let lamp = []
 lamp.path = "./obj/lamp/lamp.obj"
@@ -76,6 +101,7 @@ let lampada = []
 lampada.path = "./obj/lampada/lampada.obj"
 lampada.mtl = "./obj/lampada/lampada.mtl"
 lampada.position = [0, 0, 0]
+
 
 let calendario = []
 calendario.path = "./obj/calendario/calendario.obj"
@@ -92,6 +118,7 @@ portaOggetti.path = "./obj/portaOggetti/portaOggetti.obj"
 portaOggetti.mtl = "./obj/portaOggetti/portaOggetti.mtl"
 portaOggetti.position = [0, 0, 0]
 
+
 let esterni = []
 esterni.path = "./obj/esterni/esterni.obj"
 esterni.mtl = "./obj/esterni/esterni.mtl"
@@ -102,17 +129,21 @@ obj_list.push(room);
 // obj_list.push(chessset);
 obj_list.push(woodentable);
 // obj_list.push(brain);
+obj_list.push(lancettedx);
+obj_list.push(lancettadxL);
+obj_list.push(glass);
 // obj_list.push(orologio);
 // obj_list.push(lampadario);
 // obj_list.push(calendario);
 // obj_list.push(lamp);
 // obj_list.push(cestino);
 obj_list.push(portaOggetti);
+obj_list.push(chessclock);
 
 always_on_obj.push(lampada);
-always_on_obj.push(esterni);
+outside_obj.push(esterni);
 
-let scene = new Room(obj_list,always_on_obj);
+let scene = new Room(obj_list,always_on_obj,outside_obj);
 window.addEventListener('keydown', (e) => {scene.keys[e.key] = true;});
 window.addEventListener('keyup', (e) => {scene.keys[e.key] = false;});
 
