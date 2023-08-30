@@ -65,18 +65,26 @@ function render() {
             u_lightPosition: light.position,
             u_lightColor: light.color,
         };
+        scene.outside_obj.forEach(m => {
+            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
+        });
 
+        scene.transparent_obj.forEach(m => {
+            gl.disable(gl.DEPTH_TEST);
+            m.render(gl, program, sharedUniforms);
+        });
+        gl.enable(gl.DEPTH_TEST);
 
         scene.mesh_list.forEach(m => {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
-        scene.outside_obj.forEach(m => {
-            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
-        });
+        
         scene.always_on_mesh.forEach(m => {
             m.render(gl, program, sharedUniforms);
         }
         );
+        
+
 
     } if(scene.shadows.enable == 'off'){
         const lightWorldMatrix = m4.lookAt(
@@ -133,21 +141,31 @@ function render() {
             u_lightColor: light.color,
         };
 
-        scene.mesh_list.forEach(m => {
-            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
-        });
-        scene.always_on_mesh.forEach(m => {
-            m.render(gl, program, sharedUniforms);
-        }
-        );
         scene.outside_obj.forEach(m => {
             m.render(gl, program, sharedUniforms);
         }
         );
+        scene.transparent_obj.forEach(m => {
+            gl.disable(gl.DEPTH_TEST);
+            m.render(gl, program, sharedUniforms);
+        });
+
+        scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
+        
+        gl.enable(gl.DEPTH_TEST);
+
+        scene.mesh_list.forEach(m => {
+            m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
+        });
+        
+
+        
 
     }
     if (scene.shadows.enable == 'none') {
-        programP = program;
         gl.bindFramebuffer(gl.FRAMEBUFFER, null);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
         gl.clearColor(.7, .7, .7, 0.1);
@@ -164,6 +182,16 @@ function render() {
             u_lightDirection: (light.direction),
         };
 
+        scene.outside_obj.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
+        scene.transparent_obj.forEach(m => {
+            gl.disable(gl.DEPTH_TEST);
+            m.render(gl, program, sharedUniforms);
+        });
+        gl.enable(gl.DEPTH_TEST);
+
         scene.mesh_list.forEach(m => {
             m.render(gl, program, sharedUniforms);
         });
@@ -171,10 +199,8 @@ function render() {
             m.render(gl, program, sharedUniforms);
         }
         );
-        scene.outside_obj.forEach(m => {
-            m.render(gl, program, sharedUniforms);
-        }
-        );
+        
+
     }
 
     // gl.bindFramebuffer(gl.FRAMEBUFFER, null);

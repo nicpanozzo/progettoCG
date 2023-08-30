@@ -1,8 +1,9 @@
 class Room {
-    constructor(obj_list,always_on_obj,outside_obj){
+    constructor(obj_list,always_on_obj,outside_obj, transparent_obj){
         this.mesh_list = []; // Array used to store all the mesh used in the room
         this.always_on_mesh = []; // Array used to store all the mesh used in the room
         this.outside_obj = []; // Array used to store all the mesh used in the room
+        this.transparent_obj = []; // Array used to store all the mesh used in the room
 
         obj_list.forEach(obj => {
             this.mesh_list.push(new Mesh(obj, gl));
@@ -13,7 +14,9 @@ class Room {
         outside_obj.forEach(obj => {
             this.outside_obj.push(new Mesh(obj, gl));
         });
-
+        transparent_obj.forEach(obj => {
+            this.transparent_obj.push(new Mesh(obj, gl));
+        });
         this.shadows = Shadows()
         // this.camera = new Camera([4,3,7], [0, 3, 0], [0, 1, 0]);
         this.camera = new Camera([2.7949888383038175, 3.041971353994448, 2.8521434998139608],[0, -1, 0], [0, 1, 0]);

@@ -31,6 +31,7 @@ let light = {
 let obj_list = [];
 let always_on_obj = [];
 let outside_obj = [];
+let transparent_obj = [];
 
 let bed = []
 bed.path = "./obj/bed/bed.obj"
@@ -118,6 +119,15 @@ portaOggetti.path = "./obj/portaOggetti/portaOggetti.obj"
 portaOggetti.mtl = "./obj/portaOggetti/portaOggetti.mtl"
 portaOggetti.position = [0, 0, 0]
 
+let bookshelf = []
+bookshelf.path = "./obj/bookshelf/bookshelf_random.obj"
+bookshelf.mtl = "./obj/bookshelf/bookshelf_random.mtl"
+bookshelf.position = [0, 0, 0]
+
+let paintigs = []
+paintigs.path = "./obj/paintings/paintings.obj"
+paintigs.mtl = "./obj/paintings/paintings.mtl"
+paintigs.position = [0, 0, 0]
 
 let esterni = []
 esterni.path = "./obj/esterni/esterni.obj"
@@ -131,19 +141,20 @@ obj_list.push(woodentable);
 // obj_list.push(brain);
 obj_list.push(lancettedx);
 obj_list.push(lancettadxL);
-obj_list.push(glass);
+transparent_obj.push(glass);
 // obj_list.push(orologio);
 // obj_list.push(lampadario);
 // obj_list.push(calendario);
 // obj_list.push(lamp);
 // obj_list.push(cestino);
-obj_list.push(portaOggetti);
+obj_list.push(bookshelf);
 obj_list.push(chessclock);
+obj_list.push(paintigs);
 
 always_on_obj.push(lampada);
 outside_obj.push(esterni);
 
-let scene = new Room(obj_list,always_on_obj,outside_obj);
+let scene = new Room(obj_list,always_on_obj,outside_obj, transparent_obj);
 window.addEventListener('keydown', (e) => {scene.keys[e.key] = true;});
 window.addEventListener('keyup', (e) => {scene.keys[e.key] = false;});
 

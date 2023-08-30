@@ -185,7 +185,7 @@
 			
 			// the 'r' channel has the depth values
 			float projectedDepth = texture2D(u_projectedTexture, projectedTexcoord.xy).r;
-			float shadowLight = (inRange && projectedDepth <= currentDepth) ? 0.4 : 1.0;
+			float shadowLight = (inRange && projectedDepth <= currentDepth) ? 0.4 : 0.5;
 			
 			vec3 L = normalize(u_lightPosition - vertPos);
 			float lambertian = max(dot(normal, L), 0.0);
