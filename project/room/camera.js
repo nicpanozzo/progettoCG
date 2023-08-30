@@ -115,6 +115,111 @@ function makeTextCanvas() {
     return ctx.canvas;
 }
 
+function makeChessCanvas() {
+    chessCtx.canvas.width = width;
+    chessCtx.canvas.height = height;
+    chessCtx.font = "15px hidef";
+
+    makeChessFenCanvas();
+    return chessCtx.canvas;
+}
+
+function makeChessFenCanvas() {
+    // chessCtx.clearRect(0, 0, width, height);
+    console.log(ctx);
+    console.log(chessCtx);
+    function drawFEN() {
+        chessCtx.clearRect(0, 0, width, height);
+        tileSize = width / 8;
+        // Draw the board
+        for (let row = 0; row < 8; row++) {
+            for (let col = 0; col < 8; col++) {
+                const isEvenRow = row % 2 === 0;
+                const isEvenCol = col % 2 === 0;
+                
+                if ((isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol)) {
+                    chessCtx.fillStyle = 'white';
+                } else {
+                    chessCtx.fillStyle = 'black';
+                }
+                
+                chessCtx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
+            }
+        }
+
+        const fen = '8/1Q6/2nkp2R/3pRP2/2P3b1/4P3/3R1p1B/4QB1K';  
+        
+        
+        const rows = fen.split('/');
+        // draw pieces
+        const pieces = {
+            'k': '♔',
+            'q': '♕',
+            'r': '♖',
+            'b': '♗',
+            'n': '♘',
+            'p': '♙',
+            'K': '♚',
+            'Q': '♛',
+            'R': '♜',
+            'B': '♝',
+            'N': '♞',
+            'P': '♟'
+        };
+        for (let row = 0; row < rows.length; row++) {
+            const currentRow = rows[row];
+            let col = 0;
+
+            for (let i = 0; i < currentRow.length; i++) {
+                var char = currentRow[i];
+
+                if (!isNaN(char)) {
+                    col += parseInt(char);
+                } else {
+                    const isEvenRow = row % 2 === 0;
+                    const isEvenCol = col % 2 === 0;
+                    const tileColor = (isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol) ? 'white' : 'black';
+                    
+                    chessCtx.fillStyle = tileColor;
+                    chessCtx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
+
+                    const pieceColor = char === char.toUpperCase() ? 'white' : 'black';
+                    var color = pieceColor;
+                    
+                    char = char.toUpperCase();
+                     // Draw chess piece
+                    // check if char is Capital
+                    // chessCtx.fillStyle = color == 'white' && char === char.toUpperCase() ? 'black' : 'white';
+                    // // draw a circle in the middle of the tile
+                    // chessCtx.beginPath();
+                    // chessCtx.arc(col * tileSize + tileSize / 2, row * tileSize + tileSize / 2, tileSize / 2.5, 0, 2 * Math.PI);
+                    // chessCtx.fill();
+
+                    chessCtx.fillStyle = color == 'black' ? 'white' : 'black';
+                    chessCtx.font = '26px Arial';
+                    chessCtx.textAlign = 'center';
+                    chessCtx.textBaseline = 'middle';
+                    chessCtx.fillText(pieces[char], col * tileSize + tileSize / 2, row * tileSize + tileSize / 2);
+
+                    chessCtx.fillStyle = color;
+                    chessCtx.font = '20px Arial';
+                    chessCtx.textAlign = 'center';
+                    chessCtx.textBaseline = 'middle';
+                    chessCtx.fillText(pieces[char], col * tileSize + tileSize / 2, row * tileSize + tileSize / 2);
+
+
+                    col++;
+                }
+            }
+        }
+        
+    
+
+
+
+    }
+    drawFEN();
+}
 //Canvas 2D 
 //draw buttons
 function makeKeyCanvas() {
@@ -169,101 +274,12 @@ function makeKeyCanvas() {
         for (var i = 0; i < buttons.length; i++) {
             drawButton(buttons[i], false);
         }
-        drawFEN();
+        
     }
 
     
 
-    function drawFEN() {
-        ctx.clearRect(0, 0, width, height);
-        tileSize = width / 8;
-        // Draw the board
-        for (let row = 0; row < 8; row++) {
-            for (let col = 0; col < 8; col++) {
-                const isEvenRow = row % 2 === 0;
-                const isEvenCol = col % 2 === 0;
-                
-                if ((isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol)) {
-                    ctx.fillStyle = 'white';
-                } else {
-                    ctx.fillStyle = 'black';
-                }
-                
-                ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
-            }
-        }
-
-        const fen = '8/1Q6/2nkp2R/3pRP2/2P3b1/4P3/3R1p1B/4QB1K';  
-        
-        
-        const rows = fen.split('/');
-        // draw pieces
-        const pieces = {
-            'k': '♔',
-            'q': '♕',
-            'r': '♖',
-            'b': '♗',
-            'n': '♘',
-            'p': '♙',
-            'K': '♚',
-            'Q': '♛',
-            'R': '♜',
-            'B': '♝',
-            'N': '♞',
-            'P': '♟'
-        };
-        for (let row = 0; row < rows.length; row++) {
-            const currentRow = rows[row];
-            let col = 0;
-
-            for (let i = 0; i < currentRow.length; i++) {
-                var char = currentRow[i];
-
-                if (!isNaN(char)) {
-                    col += parseInt(char);
-                } else {
-                    const isEvenRow = row % 2 === 0;
-                    const isEvenCol = col % 2 === 0;
-                    const tileColor = (isEvenRow && isEvenCol) || (!isEvenRow && !isEvenCol) ? 'white' : 'black';
-                    
-                    ctx.fillStyle = tileColor;
-                    ctx.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
-
-                    const pieceColor = char === char.toUpperCase() ? 'white' : 'black';
-                    var color = pieceColor;
-                    
-                    char = char.toUpperCase();
-                     // Draw chess piece
-                    // check if char is Capital
-                    // ctx.fillStyle = color == 'white' && char === char.toUpperCase() ? 'black' : 'white';
-                    // // draw a circle in the middle of the tile
-                    // ctx.beginPath();
-                    // ctx.arc(col * tileSize + tileSize / 2, row * tileSize + tileSize / 2, tileSize / 2.5, 0, 2 * Math.PI);
-                    // ctx.fill();
-
-                    ctx.fillStyle = color == 'black' ? 'white' : 'black';
-                    ctx.font = '26px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(pieces[char], col * tileSize + tileSize / 2, row * tileSize + tileSize / 2-2);
-
-                    ctx.fillStyle = color;
-                    ctx.font = '20px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText(pieces[char], col * tileSize + tileSize / 2, row * tileSize + tileSize / 2 -2);
-
-
-                    col++;
-                }
-            }
-        }
-        
-    
-
-
-
-    }
+   
 
     function drawButton(b, isDown) {
         ctx.clearRect(b.x - 1, b.y - 1, b.w + 2, b.h + 2);

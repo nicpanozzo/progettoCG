@@ -217,6 +217,9 @@ let width = cameraColumn.getBoundingClientRect().width;
 let height = cameraColumn.getBoundingClientRect().height;
 makeTextCanvas(width, height);
 
+let chessCanvas = document.getElementById("canvas2d-chess");
+chessCtx = chessCanvas.getContext('2d');
+makeChessCanvas(width, height);
 
 function degToRad(d) {
     return d * Math.PI / 180;
