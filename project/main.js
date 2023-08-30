@@ -26,7 +26,7 @@ let light = {
     dirLightOn : [0.4,0.9,.1],
     position: [0,8.8,0],
     direction : [-1,1,0],//[4,1,0.2],
-    color : [1.0, 1.0, 1.0],
+    color : [.90, .90, 1.0],
 };
 
 //insert object

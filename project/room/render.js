@@ -140,26 +140,28 @@ function render() {
             u_lightPosition: light.position,
             u_lightColor: light.color,
         };
-
+        
         scene.outside_obj.forEach(m => {
-            m.render(gl, program, sharedUniforms);
+            m.render(gl, blurProgram, sharedUniforms);
         }
         );
         scene.transparent_obj.forEach(m => {
             gl.disable(gl.DEPTH_TEST);
             m.render(gl, program, sharedUniforms);
         });
-
-        scene.always_on_mesh.forEach(m => {
-            m.render(gl, program, sharedUniforms);
-        }
-        );
-        
         gl.enable(gl.DEPTH_TEST);
 
         scene.mesh_list.forEach(m => {
             m.render(gl, scene.shadows.textureProgramInfo, sharedUniforms);
         });
+        scene.always_on_mesh.forEach(m => {
+            m.render(gl, program, sharedUniforms);
+        }
+        );
+        
+        
+
+        
         
 
         
@@ -183,7 +185,7 @@ function render() {
         };
 
         scene.outside_obj.forEach(m => {
-            m.render(gl, blurProgram, sharedUniforms);
+            m.render(gl, program, sharedUniforms);
         }
         );
         scene.transparent_obj.forEach(m => {

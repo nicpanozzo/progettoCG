@@ -193,7 +193,7 @@ function makeKeyCanvas() {
             }
         }
 
-        const fen = '3qr1Q1/1Rp1b1p1/8/2B1K3/7B/2kbn3/8/N7';  
+        const fen = '8/1Q6/2nkp2R/3pRP2/2P3b1/4P3/3R1p1B/4QB1K';  
         
         
         const rows = fen.split('/');
