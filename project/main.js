@@ -13,6 +13,8 @@ if (!gl.getExtension('WEBGL_depth_texture')) {
 
 let program = webglUtils.createProgramInfo(gl, ["base-vertex-shader", "base-fragment-shader"]);
 
+let blurProgram = webglUtils.createProgramInfo(gl, ["blur-vertex-shader", "blur-fragment-shader"]);
+
 let poschess = [1,1,2.5];
 
 

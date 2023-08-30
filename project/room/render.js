@@ -183,7 +183,7 @@ function render() {
         };
 
         scene.outside_obj.forEach(m => {
-            m.render(gl, program, sharedUniforms);
+            m.render(gl, blurProgram, sharedUniforms);
         }
         );
         scene.transparent_obj.forEach(m => {
