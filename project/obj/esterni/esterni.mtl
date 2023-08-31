@@ -9,7 +9,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 illum 2
 map_Kd HdrSkySunset007_JPG_2K.jpg
-map_d HdrSkySunset007_JPG_2K.jpg
+
 
 newmtl grass
 Ns 250.000000
@@ -19,7 +19,7 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 illum 2
 map_Kd bigrass.jpg
-map_d bigrass.jpg
+
 
 newmtl muro
 Ns 250.000000

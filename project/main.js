@@ -15,8 +15,6 @@ let program = webglUtils.createProgramInfo(gl, ["base-vertex-shader", "base-frag
 
 let blurProgram = webglUtils.createProgramInfo(gl, ["blur-vertex-shader", "blur-fragment-shader"]);
 
-let poschess = [1,1,2.5];
-
 
 //light used for the room
 let light = {
@@ -35,10 +33,6 @@ let always_on_obj = [];
 let outside_obj = [];
 let transparent_obj = [];
 
-let bed = []
-bed.path = "./obj/bed/bed.obj"
-bed.mtl = "./obj/bed/bed.mtl"
-bed.position = [0, 0, 1]
 
 let glass = []
 glass.path = "./obj/glass/glass.obj"
@@ -46,17 +40,9 @@ glass.mtl = "./obj/glass/glass.mtl"
 glass.position = [0, 0, 0]
 
 let room = []
-// room.path = "./obj/room/room.obj"
-// room.mtl = "./obj/room/room.mtl"
-// room.position = [0, 0, 0]
 room.path = "./obj/myroom/myroom.obj"
 room.mtl = "./obj/myroom/myroom.mtl"
 room.position = [0, 0, 0]
-
-let chessset = []
-chessset.path = "./obj/chessset/chessset.obj"
-chessset.mtl = "./obj/chessset/chessset.mtl"
-chessset.position = poschess //[0, 0, 1]
 
 let woodentable = []
 woodentable.path = "./obj/woodentable/woodentable.obj"
@@ -64,12 +50,6 @@ woodentable.mtl = "./obj/woodentable/woodentable.mtl"
 woodentable.position = [1,1,0] //[0, 0, 1]
 // woodentable.rotate = true;  
     
-
-let brain = []
-brain.path = "./obj/brain/brain.obj"
-brain.mtl = "./obj/brain/brain.mtl"
-brain.position = [0, 0, 4]
-brain.vrotate = true;
 
 let lancettedx = []
 lancettedx.path = "./obj/lancettedx/lancettedx.obj"
@@ -89,15 +69,30 @@ orologio.mtl = "./obj/orologio/orologio.mtl"
 orologio.position = [0, 0, 0]
 // orologio.rotate = true;
 
+let chairs = []
+chairs.path = "./obj/chairs/chairs.obj"
+chairs.mtl = "./obj/chairs/chairs.mtl"
+chairs.position = [1, 1, 0]
+
+let table = []
+table.path = "./obj/table/table.obj"
+table.mtl = "./obj/table/table.mtl"
+table.position = [1, 1, 0]
+
+let whitePieces = []
+whitePieces.path = "./obj/whitePieces/whitePieces.obj"
+whitePieces.mtl = "./obj/whitePieces/whitePieces.mtl"
+whitePieces.position = [1, 1, 0]
+
+let blackPieces = []
+blackPieces.path = "./obj/blackPieces/blackPieces.obj"
+blackPieces.mtl = "./obj/blackPieces/blackPieces.mtl"
+blackPieces.position = [1, 1, 0]
+
 let chessclock = []
 chessclock.path = "./obj/chessclock/chessclock.obj"
 chessclock.mtl = "./obj/chessclock/chessclock.mtl"
 chessclock.position = [0, 0, 0]
-
-let lamp = []
-lamp.path = "./obj/lamp/lamp.obj"
-lamp.mtl = "./obj/lamp/lamp.mtl"
-lamp.position = [1, 0, 0]
 
 
 let lampada = []
@@ -106,25 +101,15 @@ lampada.mtl = "./obj/lampada/lampada.mtl"
 lampada.position = [0, 0, 0]
 
 
-let calendario = []
-calendario.path = "./obj/calendario/calendario.obj"
-calendario.mtl = "./obj/calendario/calendario.mtl"
-calendario.position = [0, 0, 0]
-
-let cestino = []
-cestino.path = "./obj/cestino/cestino.obj"
-cestino.mtl = "./obj/cestino/cestino.mtl"
-cestino.position = [0, 0, 0]
-
-let portaOggetti = []
-portaOggetti.path = "./obj/portaOggetti/portaOggetti.obj"
-portaOggetti.mtl = "./obj/portaOggetti/portaOggetti.mtl"
-portaOggetti.position = [0, 0, 0]
-
 let bookshelf = []
-bookshelf.path = "./obj/bookshelf/bookshelf_random.obj"
-bookshelf.mtl = "./obj/bookshelf/bookshelf_random.mtl"
+bookshelf.path = "./obj/bookshelf/bookshelf_try.obj"
+bookshelf.mtl = "./obj/bookshelf/bookshelf_try.mtl"
 bookshelf.position = [0, 0, 0]
+
+let attaccapanni = []
+attaccapanni.path = "./obj/attaccapanni/attaccapanni.obj"
+attaccapanni.mtl = "./obj/attaccapanni/attaccapanni.mtl"
+attaccapanni.position = [0, 0, 0]
 
 let paintigs = []
 paintigs.path = "./obj/paintings/paintings.obj"
@@ -136,20 +121,21 @@ esterni.path = "./obj/esterni/esterni.obj"
 esterni.mtl = "./obj/esterni/esterni.mtl"
 esterni.position = [0, 0, 0]
 
-// obj_list.push(bed);
+
 obj_list.push(room);
-// obj_list.push(chessset);
-obj_list.push(woodentable);
-// obj_list.push(brain);
+
+// obj_list.push(woodentable);
+
 obj_list.push(lancettedx);
 obj_list.push(lancettadxL);
 transparent_obj.push(glass);
-// obj_list.push(orologio);
-// obj_list.push(lampadario);
-// obj_list.push(calendario);
-// obj_list.push(lamp);
-// obj_list.push(cestino);
+
 obj_list.push(bookshelf);
+obj_list.push(attaccapanni);
+obj_list.push(whitePieces);
+obj_list.push(blackPieces);
+obj_list.push(chairs);
+obj_list.push(table);
 obj_list.push(chessclock);
 obj_list.push(paintigs);
 
