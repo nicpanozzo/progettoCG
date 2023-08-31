@@ -25,18 +25,47 @@
                 <li><a href="#render">render.js </a></li>
                 <li><a href="#rendering_avanzato">Rendering avanzato </a></li>
             </ul>
+            <li><a href="#bonus_section">Bonus</a></li>
             <li><a href="#riferimenti">Riferimenti</a></li>
 
     </div>
 
     <div> 
         <p class="subsection" id="introduzione"></a>Introduzione </p>
-        Questo progetto è stato sviluppato per l'esame di "Computer Graphics A.A. 2022/2023". L'obiettivo è di progettare ed implementare un'applicazione 3D interattiva usando WebGL (HTML5, CSS e contesto webgl), linguaggio JavaScript e OpenGL ES SL. <br>
-        La scena è stata sviluppata con l'obiettivo di realizzare una stanza in cui sono presenti: un tavolo, su cui sopra risiede una scacchiera, un paio di sedie TODO(. Sul muro sono appesi un orologio e un calendario.) Inoltre sulla scena sono presenti anche una porta e il vetro che permette di vedere dall'esterno la sala. <br>
-        Tutti gli oggetti sono stati implementati usando Blender e poi importati in formato <i>.obj</i>, la scacchiera è stata scaricata <a href="https://blendswap.com/blend/25529">Blend Swap</a>.<br>
+        Questo è il progetto di "Computer Graphics A.A. 2022/2023". L'obiettivo è di realizzare un'applicazione 3D interattiva usando WebGL (HTML5, CSS e contesto webgl), linguaggio JavaScript e OpenGL ES SL. <br>
+        La scena rappresentata è una stanza con degli elementi di decoro, nel dettaglio: 
+        <ul>
+            <li>un tavolino: scaricato da <a href="https://blendswap.com/blend/30248">qui</a>.</li>
+            <li>2 sedie: scaricate da <a href="https://blendswap.com/blend/30766">qui</a>.</li>
+            <li>una scacchiera: scaricata da <a href="https://blendswap.com/blend/25529">qui</a>. Che rappresenta un quiz che è riportato nella sezione di destra</li>
+            <li>dei libri: scaricato da <a href="https://blendswap.com/blend/30030">qui</a>. Avendo dei problemi con l'esportazione dei materile di questo asset generativo, ho creato uno script in python per modificare il file .obj ed assegnare materiali differenti.</li>
+            <li>un attaccapanni: scaricato da <a href="https://blendswap.com/blend/21976">qui</a>.</li>
+            <li>una finestra.</li>
+            <li>3 quadri.</li>
+            <li>una porta.</li>
+            <li>un lampadario.</li>
+            <li>un orologio da scacchi: con le lancette che si ruotano.</li>
+        </ul>
+
+        All'esterno c'è un prato ed un cielo con delle nuvole. <br>
+        
+        Tutti i file sono stati esportati in formato <b>.obj</b> e <b>.mtl</b> da Blender. <br>
+
 
         <p class="subsection" id="interfaccia">Interfaccia</p>
-        L'interfaccia dell'applicazione è composta da due parti, il canvas per la visualizzazione 3D e le istruzioni per l'utente con le impostazioni ed il canvas 2D in cui sono illustrati i comandi per interagire con la scena. <br>
+        L'interfaccia dell'applicazione è composta da due parti:
+        <ul>
+            <li>il canvas per la visualizzazione 3D</li>
+            <li>una sezione in 2D contenente:
+                <ul>
+                    <li>le istruzioni testuali per l'utente per interagire con la scena</li>
+                    <li>un canvas 2d con i controlli cliccabili</li>
+                    <li>la gestione degli effetti di illuminazione della scena</li>
+                    <li>un canvas 2d che rappresenta la posizione della scacchiera nella scena contenete un tatticismo di scacchi</li>
+                </ul>
+            </li>
+            
+        </ul> 
 
         <p><img src="img/interfaccia.png" alt="interfaccia" class="img" style="width:900px;height:500px;"></p>
 
@@ -50,16 +79,21 @@
                 <li> <b>D</b> per andare a destra </li>
                 <li> <b>Q</b> per andare in alto </li>
                 <li> <b>E</b> per andare in basso </li>
+                <li> <b>R</b> per impostare la direzione della camera parallela al suolo </li>
                 <li> <b>↑</b> per ruotare verso l'alto </li>
                 <li> <b>↓</b> per ruotare verso il basso</li>
                 <li><b>←</b> per ruotare verso sinistra </li>
                 <li> <b>→</b> per ruotare verso destra </li>
             </ul>
         </li>
-        <li> il touch sulla scena</li>
-        <p><img src="img/movimenti_touch.gif" alt="touch"  style="width:500px;height:300px;"></p>
+        <li> il touch sulla scena testato sul browser <i>Safari</i></li>
+        <p><img src="img/movimenti_touch.gif" alt="touch" style="width: 100%;"></p>
+        <p><img src="img/movimenti_touch2.gif" alt="touch" style="width: 20%;"></p>
+
         <li> il canvas 2D in cui sono disegnati i pulsanti per il movimento</li>
-        <p><img src="img/canvas2d.png" alt="canvas2d"  style="width:100px;height:100px;"></p>
+        <p><img src="img/canvas2d.png" alt="canvas2d buttons"></p>
+        <li> il canvas 2D in cui è stato riportato il tatticismo di scacchi a tema "matto in 1" presente nella scena 3D</li>
+        <p><img src="img/canvas2d2.png" alt="canvas2d chess"></p>
     </ul>
         <p class="subsection" id = "struttura"> Struttura del progetto </p>
         <p> All'interno della repository sono presenti i seguenti file:
@@ -79,8 +113,8 @@
         </p>
 
         
-        <p class="subsection" id ="room"></a>Sviluppo della sala - directory room </p>
-        La directory <i> <b> room</b></i> contiene i file utilizzati per la realizzazione della scena.<br> 
+        <p class="subsection" id ="room"></a>Room </p>
+        La directory <b>room</b> contiene i file utilizzati per la realizzazione della scena.<br> 
         I file che lo compongono sono: 
         <ul>
         <li> <i><b>camera.js:</b></i> si occupa di gestire la camera e i suoi movimenti nello spazio. </li>
@@ -91,8 +125,8 @@
         
     </ul>
 
-    <p class="subsubsection" id="camera"> camera.js</p>
-    <p> Il file <i><b>camera.js</b></i> contiene la classe <i>Camera</i> che si occupa di gestire la camera e i suoi movimenti nello spazio. </p> 
+    <p class="subsubsection" id="camera"> Camera</p>
+    <p> La classe <i>Camera</i> contenuta nel file <b>camera.js</b> si occupa di gestire la camera e i suoi movimenti nello spazio. </p> 
     L'orientamento della camera è definito da tre assi ortogonali, in cui ogni asse è un vettore in coordinate globali. <br>
    <ul>
         <li>position: posizione nello spazio della camera.</li>
@@ -122,6 +156,7 @@
    La funzione <i>drawButton</i> si occupa di disegnare i singoli tasti all'interno del canvas 2D, andando a salvare in un array tutti i tasti che si vogliono realizzare. <br>
    In seguito, l'array viene iterato tramite la funzione <i>drawAll</i>, che per ogni oggetto dell'array chiama la funzione <i>drawButton</i>. Quest'ultima, si occupa della creazione dei quadrati, che rappresentano i pulsanti, e di determinarne la  dimensione, il colore e il testo da applicare. <br>
 
+   Vi è anche la funzione <i>makeChessCanvas</i> che si occupa di disegnare la scacchiera all'interno del canvas 2D, data una posizione in formato <i>FEN (Forsyth-Edwards Notation)</i>.
    
 
    <p class="subsubsection" id="mesh"> mesh.js</p>
@@ -141,32 +176,41 @@
     <p class="subsubsection" id="render"> render.js</p>
     Il file <i><b>render.js</b></i> contiene una funziona render che si occupa di scegliere uniform e shader a seconda del tipo di rendering scelto. <br>
     Prima di partire con il rendering la funzione si occupa di effettuare il resize del canvas, se necessario, e controllare gli input da tastiera. <br>
-    La scena può essere disegnata con due shader, con o senza ombre. <br>
+    La scena può essere disegnata con due shader, con o senza ombre, e con la possibilità di scegliere tra 2 diversi tipi di illuminazione, tramite la luce del lampadario o quella esterna.<br>
     Il rendering base supporta le texture e i colori, la luce diffusa e la specular lightning. <br>
-    <p class="img"><img src="img/rendering_base.png" alt="rendering_base" style="width:400px;height:300px;" class="img"> <b>Rendering base</b></p>
+    Il rendering base supporta una tecnica avanzata, gli elementi esterni alla scena infatti vengono disegnati con un effetto blur per simulare la vistra attraverso un vetro sporco calcolando il colore di rendering come la media dei colori dei pixel vicini. <br>
+    <p class="img"><img src="img/rendering_base.png" alt="rendering_base" style="width: 100%"> <b>Rendering base</b></p>
 
     <h4 id="rendering_avanzato">Rendering avanzato </h4>
-    La prima techica di rending avanzato è il rendering con ombre, attivabile tramite la checkbox <i><b>Ombre</b></i>. <br>
+    La prima techica di rending avanzato è il rendering con ombre, attivabile tramite i radio button per determinare quale luce si vuole: <i><b>tutto illuminato(niente ombre), accesa (lampadario), spenta (luce esterna)</b></i>. <br>
     Per poter generare le ombre la scena viene disegnata due volta, prima dal punto di vista della luce per generare una shadowmap, poi dal punto di vista dell’osservatore utilizzando la shadowmap generata per capire se un punto è in ombra o meno.
+    Per potere mantenere luminoso il lampadario, lo si renderizza a senza usare la shadowmap. <br>
     <br>
-    <p class="img"><img src="img/rendering_ombre.png" alt="rendering_base" style="width:400px;height:300px;" class="img"> <b>Rendering con ombre</b></p>
+    <p class="img"><img src="img/rendering_ombre_lampada.png" alt="rendering con ombre di lampadario" style="width:100%;" class="img"> <b>Rendering con ombre del lampadario</b></p>
+    Nel rendering <i><b>Spenta</b></i> la luce entra dalla finestra.
+    <br>
+    <p class="img"><img src="img/rendering_ombre_finestra.png" alt="rendering con ombre della finestra" style="width:100%;" class="img"> <b>Rendering con ombre della finestra</b></p>
+    Il vetro della finestra costituisce appunto un elemento trasparente, ottenuto tramite la disabilitazione del depth test e l'attivazione del blending. <br>
 
-    La seconda tecnica di rendering avanzato è stato l'effetto trasparenza su un oggetto del modello, ovvero il vetro della sala operatoria. <br>
-    L'effetto della trasparenza è dato dalla quarta componente colore di RGBA chiamata alpha. Essa misura l'opacità del texel e può assumere valori compresi tra 0 e 1.
-    <ul>
-    <li>0: il texel è completamente trasparente</li>
-    <li>1: il texel è completamente opaco</li>
-    </ul>
-    Il buffer alpha è allocato di default. Per abilitare questo buffer è stata chiamata la funzione enable(gl.BLEND) sul contesto 3D. <br>
-    In seguito è stato aggiunto all'interno del fragment shader l'attributo <i><b>uniform float opacity</b></i> il quale permette di passare il valore alpha del colore dell'oggetto. Successivamente, il valore di opacity viene moltiplicato all'interno del colore dell'oggetto. <br>
-    Per applicare l'effetto trasparente sull'oggetto, è stato necessario prima inserire la foto, che si deve intravedere nella trasparenza del vetro, e in seguito aggiungere il vetro reso trasparente modificando il valore <i>d</i> dell'oggetto vetro presente nel file <i>room.mtl</i> e settandolo a 0.2.
+    <p class="img"><img src="img/finestra_trasparenza.png" alt="trasparenza" style="width:400px;height:300px;" class="img"> <b>Trasparenza</b></p>
+    Si puo notare l'effetto blur degli elementi fuori dalla finestra quando viene selezionata la modalità <i><b>Tutto illuminato</b></i>. <br>
+    <p class="img"><img src="img/finestra_blur.png" alt="blur" style="width:400px;height:300px;" class="img"> <b>Effetto blur</b></p>
 
-    <p class="img"><img src="img/trasparenza.png" alt="trasparenza" style="width:400px;height:300px;" class="img"> <b>Trasparenza</b></p>
-  
+    <h4 id="bonus_section">Bonus :)</h4>
+    L'orologio nella scena è animato e le lancette si muovono ancora, perchè il nero, furioso per la sua prestazione mediocre, ha abbandonato la scacchiera e il nero ha vinto. <br>
+    Ma non aveva visto che pure lui aveva matto in uno e poteva vincere la partita. <br>
+
+    <p class="img"><img src="img/clock.gif" alt="clock" style="width:100%;" class="img"> <b>Orologio</b></p>
+    Per realizzare il progetto ho dovuto studiare la storia degli scacchi e le sue regole. <br>
+    Le ricerche hanno portato alla scoperta di reperti significativi, riportati nella scena sotto forma di quadri. <br>
+    <p class="img"><img src="img/paintings.png" alt="quadri" style="width:100%;" class="img"> <b>Quadri</b></p>
+
 <p class="subsection" id="riferimenti"></a>Riferimenti </p>
 <a href="https://webglfundamentals.org/webgl/lessons/webgl-load-obj-w-mtl.html">WebGL Fundamentals: Loading .obj with Mtl</a>
 <br>
 <a href="https://webglfundamentals.org/webgl/lessons/webgl-shadows.html">WebGL Fundamentals: Shadows</a>
+<br>
+<a href="https://garrychess.com">L'inventore degli scacchi</a>
 
 <p><a href="#indice">Torna all’indice</a></p>
 

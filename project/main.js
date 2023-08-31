@@ -219,7 +219,9 @@ makeTextCanvas(width, height);
 
 let chessCanvas = document.getElementById("canvas2d-chess");
 chessCtx = chessCanvas.getContext('2d');
-makeChessCanvas(width, height);
+let chessWidth = width + 100;
+let chessHeight = height + 100;
+makeChessCanvas(chessWidth, chessHeight);
 
 function degToRad(d) {
     return d * Math.PI / 180;

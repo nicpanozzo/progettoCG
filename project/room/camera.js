@@ -116,8 +116,9 @@ function makeTextCanvas() {
 }
 
 function makeChessCanvas() {
-    chessCtx.canvas.width = width;
-    chessCtx.canvas.height = height;
+    
+    chessCtx.canvas.width = chessWidth;
+    chessCtx.canvas.height = chessHeight;
     chessCtx.font = "15px hidef";
 
     makeChessFenCanvas();
@@ -129,8 +130,8 @@ function makeChessFenCanvas() {
     console.log(ctx);
     console.log(chessCtx);
     function drawFEN() {
-        chessCtx.clearRect(0, 0, width, height);
-        tileSize = width / 8;
+        chessCtx.clearRect(0, 0, chessWidth, chessHeight);
+        tileSize = chessWidth / 8;
         // Draw the board
         for (let row = 0; row < 8; row++) {
             for (let col = 0; col < 8; col++) {

@@ -264,7 +264,30 @@
 			for (float dx = -0.020; dx <= 0.020; dx += 0.02) {
 				for (float dy = -0.020; dy <= 0.020; dy += 0.02) {
 					vec2 offset = vec2(dx, dy) / vec2(50.0, 50.0);
-					vec4 sampleColor = texture2D(texture, texcoord + offset);
+
+					vec3 normal = normalize(v_normal) * (float(gl_FrontFacing) * 2.0 - 1.0);
+			
+					vec3 surfaceToViewDirection = normalize(v_surfaceToView);
+					vec3 halfVector = normalize(u_lightDirection + surfaceToViewDirection);
+					
+					vec3 L = normalize(normalize(u_lightPosition) - vertPos);
+					float lambertian = max(dot(normal, L), 0.0);
+					
+					float fakeLight = dot(normalize(u_lightDirection), normal) * .5 + .5;
+					float specularLight = clamp(dot(normal, halfVector), 0.0, 1.0);
+					
+					vec4 diffuseMapColor = texture2D(diffuseMap, texcoord + offset);
+					vec3 effectiveDiffuse = diffuse * diffuseMapColor.rgb * u_lightColor.rgb * v_color.rgb;
+					float effectiveOpacity = opacity * diffuseMapColor.a * v_color.a;
+					
+					vec4 sampleColor = vec4(
+					emissive +
+					ambient * u_ambientLight * lambertian +
+					effectiveDiffuse * fakeLight +
+					specular * pow(specularLight, shininess),
+					effectiveOpacity);
+
+					
 					totalColor += sampleColor;
 					numSamples += 1.0;
 				}
@@ -347,51 +370,53 @@
 					<h3 class="left">Computer Graphics</h3>
 					
 				</div>
-				<div class="title">
-					<h4 class="left">Comandi</h3>
+
+					<b class="left">Comandi Camera</b>
+					<br>
 					
-				</div>
-				<p>
-					<b> W/S:</b> avanti/indietro <br>
-					<b>A/D:</b> destra/sinistra</br>
-					<b>Q/E:</b> su/giù</br>
-					<b>Freccia su/giù: </b> inclinazione </br>
-					<b>Freccia destra/sinistra:</b> rotazione</br>
-					<b>R:</b> riallineare la camera</br>
+
+				
+					<b> W/A/S/D:</b> avanti/sinistra/indietro/destra <br>
+					<b>Q/E:</b> alza/abbassa</br>
+					<b>R:</b> allinea</br>
+					<b>↑/←/↓/→: </b> ruota</br>
 					<div style=" background-color: rgb(38, 38, 38); border-radius: 5px;">
 						<div id="canvas_column">
 							<canvas id="canvas2d"></canvas>
 						</div>
 					</div>
 					<hr>
-					<div class="title">
-						<h4 class="left">Luci</h3>
-						
-					</div>
-					<p>
+
+						<b class="left">Luci</b>
+						<br>
+
+				
 						
 						<!-- radio input with 3 choices -->
 						<input type="radio" id="shadows" name="shadows" value="none" checked>
-						<label id="shadows"> <b>None</b></label><br>
+						<label id="shadows"> <b>Tutto illuminato</b></label><br>
 						<input type="radio" id="camera2" name="shadows" value="on">
-						<label id="shadows2"> <b>On</b></label><br>
+						<label id="shadows2"> <b>Accesa</b></label><br>
 						<input type="radio" id="camera3" name="shadows" value="off">
-						<label id="shadows3"> <b>Off</b></label><br>
+						<label id="shadows3"> <b>Spenta</b></label><br>
 
 						<!-- <input type="checkbox" id="shadows" name="shadows" value="shadows" unchecked>
 						<label id="shadows"> <b>Ombre</b></label><br> -->
 						
-					</p>
+					
 					
 					<!-- separatore -->
 					<hr>
-					<div class="title">
-						<h4 class="left">Puzzle</h3>
-						
-					</div>
-					<p>Trova il matto in uno! C'è per entrambi i colori</p>
-					<div style=" background-color: rgb(38, 38, 38); border-radius: 5px;">
-						<div id="canvas_column">
+					
+						<b class="left">Puzzle</b>
+						<br>
+					
+					Trova il matto in uno! C'è per entrambi i colori!
+					
+					<div style=" background-color: clear; border-radius: 5px; margin-top: 10px;">
+						<!-- create a centered div -->
+
+						<div style="text-align: center">
 							<canvas id="canvas2d-chess"></canvas>
 						</div>
 					</div>
