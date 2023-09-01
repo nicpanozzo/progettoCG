@@ -127,8 +127,8 @@ function makeChessCanvas() {
 
 function makeChessFenCanvas() {
     // chessCtx.clearRect(0, 0, width, height);
-    console.log(ctx);
-    console.log(chessCtx);
+    // console.log(ctx);
+    // console.log(chessCtx);
     function drawFEN() {
         chessCtx.clearRect(0, 0, chessWidth, chessHeight);
         tileSize = chessWidth / 8;
